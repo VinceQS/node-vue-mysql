@@ -1,0 +1,2 @@
+启动vue项目，
+在server文件夹下执行 node index 启动node服务
