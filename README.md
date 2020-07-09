@@ -1,0 +1,2 @@
+# node-vue-mysql
+node+express 建立服务端，连接mysql数据库，调用登录接口登录成功后使用jsonwebtoken生成token，与用户信息一起返回客户端，存储在sessionStorage中，每个请求在拦截器中将token添加到req.headers，服务端校验token的有效性。 前端将用户信息存在vuex中，路由切换前对token和user信息进行判断，若无进行相应的操作。  练习用，只做了登录和一个增删改查的页面功能
