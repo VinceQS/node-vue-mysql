@@ -15,3 +15,7 @@ body, html {
   width: 1.2em !important;
   height: 1.2em !important;
 }
+.clearfix {
+  overflow: hidden;
+  _zoom: 1;
+}

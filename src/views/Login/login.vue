@@ -54,8 +54,8 @@ export default {
     }
     return {
       loginForm: {
-        user: '',
-        password: ''
+        user: 'zhangsan',
+        password: '123456'
       },
       password: true,
       loading: false,
@@ -85,7 +85,7 @@ export default {
               this.$store.dispatch('log_in', user)
               
               setTimeout(() => {
-                this.$router.push('/')
+                this.$router.push('/index')
               }, 1500);
             } else {
               this.$message.error(response.message)

@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div style="width: 100%; height:600px; overflow-x:hidden">
         <div class="map-container" id="map-container"></div>
     </div>
 </template>
@@ -48,9 +48,9 @@ export default {
 </script>
 <style lang="scss">
     .map-container{
-        position: absolute;
-        top:0;
-        left: 0;
+        // position: absolute;
+        // top:0;
+        // left: 0;
         width: 100%;
         height: 100%;
         // height: calc(100vh -50px);

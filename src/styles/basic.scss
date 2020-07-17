@@ -63,8 +63,10 @@ ul, ol ,ul li, ol li{
     // background: #bbb;
 }
 .app-main{
-    min-height: calc(100vh - 50px);
-    width: 100%;
+    // min-height: calc(100vh - 50px);
+    // width: 100%;
+    min-height: 600px;
+    padding: 20px;
     position: relative;
 }
 #app .el-submenu , #app .el-menu-item{

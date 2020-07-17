@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors')
 const app = express();
+const Fn = require('./utils')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,19 +20,6 @@ app.use(cors({
   'methods': 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
   'prefilghtContinue': false
 }))
-// 生成session
-// const session = require('express-session');
-// const FileStore = require('session-file-store')(session)
-// app.use(session({
-//   secret: 'sessionUser',
-//   resave: false,
-//   store: new FileStore(),
-//   saveUninitialized: true,
-//   cookie: {
-//     user: 'default',
-//     maxAge: 60*1000
-//   }
-// }))
 
 // 处理跨域
 app.use(function(req, res, next){
@@ -46,7 +34,6 @@ app.use(function(req, res, next){
   res.setHeader('Content-Type','applicaition/json;charset=UTF-8')
   // 对登录用户执行session校验
   console.log('req----')
-  console.log(req.headers)
   if (req.headers.token) {
     next();
   } else {
@@ -69,6 +56,59 @@ app.use(function(req, res, next){
 app.use('/api/user', userApi);
 app.use('/api/company', companyApi)
 app.use('/api/login', login)
+
+// 创建websocket连接
+const WebSocket = require('ws');
+const { json } = require('body-parser');
+const server = new WebSocket.Server({port: 8080}, () => {
+   console.log('socket start')
+})
+server.on('open', () => {
+  console.log('connected')
+})
+server.on('close', (e) => {
+  console.log('disconnected')
+  console.log(e)
+})
+server.on('message', (msg) => {
+  console.log('------msg----')
+  console.log(msg)
+})
+const clients = [] // 所有建立的连接，消息推送
+server.on('connection', (client, data) => {
+  clients.push(client)
+  console.log('在线人数：', clients.length)
+  const hasMsg = JSON.parse(fs.readFileSync('msg.json'))
+  // console.log(hasMsg)
+  // // 发送信息给客户端
+  client.send(JSON.stringify(hasMsg.message))
+  // 监听客户端发送的信息
+  client.on('message', (message) => {
+    console.log(message)
+    const news = JSON.parse(message)
+    news.time = Fn.getTime()
+    console.log(news)
+    hasMsg.message.push(news)
+    fs.writeFile('./msg.json', JSON.stringify(hasMsg), (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('--修改成功--')
+      }
+    })
+    // 将信息广播发送到各连接状态的客户端
+    clients.forEach(item => {
+      item.send(JSON.stringify(news))
+    })
+  })
+  // 监听关闭
+  client.on('close', (e) => {
+    console.log('disconnected')
+    console.log(e)
+  })
+}).on('error', (err) => {
+  console.log(err)
+})
 
 app.listen(3000);
 console.log('success listen at port:3000');

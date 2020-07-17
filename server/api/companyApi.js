@@ -74,35 +74,4 @@ router.get('/getCompany', (req, res, next) =>{
     })
 })
 
-router.get('/getCompany', (req, res, next) =>{
-    let name = req.query.name?req.query.name+'%':'%';
-    let num = req.query.pageNum;
-    let size = Number(req.query.pageSize);
-    let start = size*(num -1);
-    let sql = 'select count(*) from company where name like ?; select * from company where name like ? limit ?,?';
-
-    pool.getConnection(function(err, connection){
-        if(err){
-            console.log(err)
-        }else{
-            connection.query(sql, ["%"+name+"%", "%"+name+"%", start, size], function(error, result){
-                if(error){
-                    console.log('error',error);
-                }else{
-                    let len = result[0][0]['count(*)'];
-                    let arr = result[1];
-                    const data = {
-                        total:len,
-                        list: arr,
-                        code:'000000',
-                        status:200
-                    }
-                    jsonWrite(res, data)
-                }
-            })
-            pool.releaseConnection(connection);
-        }
-    })
-})
-
 module.exports = router;

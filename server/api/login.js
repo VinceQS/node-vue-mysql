@@ -74,11 +74,7 @@ router.post("/login", (req, res, next) => {
               message: pwd === password ? '登录成功' : '密码错误'
             }
             if (pwd === password) {
-              // req.session.user = account
-              // req.session.isLogin = true
-              // console.log('sessionID:',req.sessionID)
-              // data.sessionID = req.sessionID
-              let token = jwt.sign({account, exp: Math.floor(Date.now()/1000 + (60 * 10))}, 'beijing')
+              let token = jwt.sign({account, exp: Math.floor(Date.now()/1000 + (60 * 100))}, 'beijing')
               console.log('token:', token)
               data.token = token
               data.userInfo = result[0]

@@ -11,7 +11,7 @@ export default new Router({
     {
       path: "/",
       component: Layout,
-      redirect: "index",
+      redirect: "login",
       children: [
         {
           path: "index",
@@ -39,6 +39,10 @@ export default new Router({
         {
           path: "/map",
           component: () => import("../views/map/map")
+        },
+        {
+          path: "/socket",
+          component: () => import("../views/socket/index")
         }
       ]
     }
