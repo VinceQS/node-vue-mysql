@@ -1,6 +1,6 @@
 var sqlMap = {
   user: {
-    add: "insert into user(name, age, description) values(?, ?, ?)",
+    add: "insert into user(name, age, address) values(?, ?, ?)",
     delete: "delete from user where id=?",
     queryAll: "select * from user"
   },

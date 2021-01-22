@@ -7,8 +7,8 @@
             <el-form-item label="年龄" prop="age" :label-width="labelWidth">
                 <el-input type="number" v-model="addForm.age" :style="inputWidth"></el-input>
             </el-form-item>
-            <el-form-item label="备注" prop="description" :label-width="labelWidth">
-                <el-input v-model="addForm.description" :style="inputWidth"></el-input>
+            <el-form-item label="地址" prop="address" :label-width="labelWidth">
+                <el-input v-model="addForm.address" :style="inputWidth"></el-input>
             </el-form-item>
         </el-form>
         <div class="dialog-footer" slot="footer" style="margin-top:2em">
@@ -34,7 +34,7 @@ export default {
             addForm:{
                 name:'',
                 age:null,
-                description:'',
+                address:'',
             },
             formRules:{
                 name:[{required: true, message:"必填字段请输入", trigger:'blur'}],

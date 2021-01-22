@@ -4,7 +4,8 @@ import store from '@/store'
 import router from '@/router'
 
 const service = axios.create({
-    baseURL: 'http://127.0.0.1:3000/api',
+    baseURL: 'http://127.0.0.1:3300/api',
+    // baseURL: process.env.BASE_API,
     timeout:5000,
     changeOrigin: true,
 })

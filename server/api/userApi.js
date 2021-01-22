@@ -28,12 +28,12 @@ router.post("/addUser", (req, res, next) => {
   let sql = $sql.user.add;
   let name = req.body.name;
   let age = +req.body.age;
-  let description = req.body.description;
+  let address = req.body.address;
   pool.getConnection(function(err, connection) {
     if (err) {
       console.log(err);
     } else {
-      connection.query(sql, [name, age, description], function(err, result) {
+      connection.query(sql, [name, age, address], function(err, result) {
         if (err) {
           console.log("添加失败" + err);
         }

@@ -10,16 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-        // '/api':{
-        //     target:'http://127.0.0.1:3000/api/',
-        //     changeOrigin: true,
-        // }
-    },
+    // proxyTable: {
+    //   '/api':{
+    //     target:'http://127.0.0.1:3000/api/',
+    //     changeOrigin: true,
+    //   }
+    // },
 
     // Various Dev Server settings
-    host: '10.10.8.245', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: 'localhost', // can be overwritten by process.env.HOST
+    port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -42,13 +42,17 @@ module.exports = {
   },
 
   build: {
+    devEnv: require('./dev.env'),
+    testEnv: require('./test.env'),
+    prodEnv: require('./prod.env'),
+
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

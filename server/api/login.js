@@ -79,6 +79,7 @@ router.post("/login", (req, res, next) => {
               data.token = token
               data.userInfo = result[0]
             }
+            console.log(data)
             res.json(data)
           } else {
             let data = {

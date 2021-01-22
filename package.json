@@ -7,12 +7,16 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:test": "cross-env NODE_ENV=testing ENV_CONFIG=test node build/build.js",
+    "build:dev": "cross-env NODE_ENV=development ENV_CONFIG=dev node build/build.js",
+    "build:prod": "cross-env NODE_ENV=production ENV_CONFIG=prod node build/build.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "element-ui": "^2.10.1",
     "express": "^4.17.1",
     "hexo-helper-live2d": "^3.1.1",

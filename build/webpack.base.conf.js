@@ -16,10 +16,17 @@ module.exports = {
     app: './src/main.js'
   },
   
+  // output: {
+  //   path: config.build.assetsRoot,
+  //   filename: '[name].js',
+  //   publicPath: process.env.NODE_ENV === 'production'
+  //     ? config.build.assetsPublicPath
+  //     : config.dev.assetsPublicPath
+  // },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
+    publicPath: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
